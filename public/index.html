@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BasKev Shop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="brand">
+        <span class="logo">B</span>
+        <div>
+          <h1>BasKev Shop</h1>
+          <p>Zapatillas de basket con estilo, rendimiento y control total.</p>
+        </div>
+      </div>
+      <div id="user-area"></div>
+    </header>
+
+    <div class="top-nav">
+      <div class="top-brand">
+        <span class="logo">B</span>
+        <div>
+          <h1>BasKev Shop</h1>
+          <p>Basket, estilo y control total.</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="top-tab active" data-tab="products">Tienda</button>
+        <button class="top-tab" data-tab="login">Login</button>
+        <button class="top-tab" data-tab="register">Registro</button>
+        <button class="top-tab" data-tab="cart">Carrito</button>
+        <button class="secondary sidebar-open" id="openSidebar">Abrir panel</button>
+      </div>
+    </div>
+    <main>
+      <section class="panel hero">
+        <div class="hero-copy">
+          <h2>La mejor experiencia para tus zapatillas de basket</h2>
+          <p>Explora nuestro catálogo, administra el inventio como administrador y compra con un carrito diseñado para ti.</p>
+        </div>
+        <div class="hero-actions">
+          <p>Administra tu tienda o comienza a comprar ahora mismo.</p>
+        </div>
+      </section>
+
+      <div class="content-shell">
+        <aside class="sidebar hide" id="sidebar">
+          <div class="sidebar-content">
+            <div class="sidebar-header">
+              <h2>Carrito / Pedidos</h2>
+              <button id="closeSidebar">×</button>
+            </div>
+            <div id="sidebarTabs" class="sidebar-tabs">
+              <button class="sidebar-tab active" data-sidebar="cart">Carrito</button>
+              <button class="sidebar-tab" data-sidebar="orders">Pedidos</button>
+            </div>
+            <div id="sidebarCart" class="sidebar-panel"></div>
+            <div id="sidebarOrders" class="sidebar-panel hide"></div>
+          </div>
+        </aside>
+
+        <section class="main-panel">
+          <section id="products-section" class="panel tab-panel">
+        <div class="section-header">
+          <h2>Productos</h2>
+          <p>Encuentra tus zapatillas favoritas y agrégalas al carrito con facilidad.</p>
+        </div>
+        <div id="product-list" class="grid"></div>
+      </section>
+
+      <section id="cart-section" class="panel tab-panel hide">
+        <div class="section-header">
+          <h2>Carrito</h2>
+          <p>Revisa tu selección, ajusta cantidades y finaliza tu compra.</p>
+        </div>
+        <div id="cart-list"></div>
+        <div class="cart-actions">
+          <p class="total">Total: <span id="cartTotal">$0.00</span></p>
+          <button id="checkoutButton">Finalizar compra</button>
+        </div>
+        <p class="message" id="cartMessage"></p>
+      </section>
+
+      <section id="orders-section" class="panel tab-panel hide">
+        <div class="section-header">
+          <h2>Pedidos</h2>
+          <p>Visualiza tus pedidos anteriores y los detalles de cada uno.</p>
+        </div>
+        <div id="orders-list" class="grid"></div>
+        <p class="message" id="ordersMessage"></p>
+      </section>
+
+      <section id="login-section" class="panel tab-panel hide">
+        <div class="section-header">
+          <h2>Iniciar sesión</h2>
+          <p>Accede a tu cuenta para poder comprar y ver tus pedidos.</p>
+        </div>
+        <div class="form-row">
+          <input id="loginUsername" placeholder="Usuario" />
+          <input id="loginPassword" type="password" placeholder="Contraseña" />
+        </div>
+        <div class="buttons-row">
+          <button id="loginButton">Iniciar sesión</button>
+          <button id="gotoRegister" class="secondary">Ir a registro</button>
+        </div>
+        <p class="message" id="authMessage"></p>
+      </section>
+
+      <section id="register-section" class="panel tab-panel hide">
+        <div class="section-header">
+          <h2>Registro</h2>
+          <p>Crea una cuenta para comenzar a comprar en BasKev Shop.</p>
+        </div>
+        <div class="form-row">
+          <input id="registerUsername" placeholder="Usuario" />
+          <input id="registerPassword" type="password" placeholder="Contraseña" />
+        </div>
+        <div class="buttons-row">
+          <button id="registerButton">Registrarse</button>
+          <button id="gotoLogin" class="secondary">Ir a login</button>
+        </div>
+        <p class="message" id="registerMessage"></p>
+      </section>
+
+      <section class="panel hide" id="admin-panel">
+        <h2>Panel de administrador</h2>
+        <form id="productForm">
+          <input id="productId" type="hidden" />
+          <div class="form-row">
+            <input id="productName" placeholder="Nombre del producto" required />
+            <input id="productPrice" type="number" step="0.01" placeholder="Precio" required />
+          </div>
+          <div class="form-row">
+            <input id="productStock" type="number" placeholder="Stock" required />
+            <input id="productImage" placeholder="URL de imagen" />
+          </div>
+          <textarea id="productDescription" placeholder="Descripción"></textarea>
+          <div class="buttons-row">
+            <button type="submit">Guardar producto</button>
+            <button type="button" id="productReset" class="secondary">Limpiar</button>
+          </div>
+        </form>
+        <div id="adminProducts" class="grid"></div>
+        <p class="message" id="adminMessage"></p>
+      </section>
+        </section>
+      </div>
+    </main>
+
+    <div id="cart-bar" class="cart-bar hide">
+      <div>
+        <strong>Carrito:</strong> <span id="cartBarCount">0</span> artículos — <span id="cartBarTotal">$0.00</span>
+      </div>
+      <div class="bar-buttons">
+        <button id="openCartBar">Ver carrito</button>
+        <button id="checkoutBarButton" class="secondary">Comprar ahora</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
